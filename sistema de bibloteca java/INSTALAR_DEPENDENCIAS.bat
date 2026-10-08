@@ -34,7 +34,7 @@ if not exist "%APP_DIR%" mkdir "%APP_DIR%"
 
 REM El pom.xml (plugin shade) escribe el JAR final directamente en app\biblioteca.jar
 cd /d "%JAVA_DIR%"
-call "!MVN_EXE!" clean package -DskipTests
+call "!MVN_EXE!" clean package
 if errorlevel 1 (
     echo [ERROR] Fallo la compilacion del backend Java.
     goto :fail

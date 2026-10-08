@@ -90,7 +90,7 @@ public class Main {
                 ctx.header("Expires", "0");
             }
             if (ctx.status().getCode() >= 400) {
-                System.err.println("⚠️ [HTTP " + ctx.status().getCode() + "] " + ctx.method() + " " + ctx.path() + " - "
+                System.err.println("[HTTP " + ctx.status().getCode() + "] " + ctx.method() + " " + ctx.path() + " - "
                         + ctx.result());
             }
         });
@@ -682,9 +682,9 @@ public class Main {
             app.get("/", solicitud -> {
                 solicitud.contentType("text/html; charset=utf-8")
                         .result("<html><body style='font-family:system-ui,sans-serif;padding:3rem;text-align:center;background:#0f172a;color:#f8fafc;'>"
-                                + "<h1 style='color:#38bdf8;'>📚 Servidor Backend Biblioteca Core</h1>"
+                                + "<h1 style='color:#38bdf8;'>Servidor Backend Biblioteca Core</h1>"
                                 + "<p>El servidor API está activo y respondiendo en el puerto 3001.</p>"
-                                + "<p><a href='/swagger-ui' style='display:inline-block;padding:0.6rem 1.2rem;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;font-weight:600;'>👉 Explorar Documentación Swagger UI</a></p>"
+                                + "<p><a href='/swagger-ui' style='display:inline-block;padding:0.6rem 1.2rem;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;font-weight:600;'>Explorar Documentación Swagger UI</a></p>"
                                 + "<p style='color:#94a3b8;font-size:0.85rem;margin-top:2rem;'>Aviso: Para servir la interfaz gráfica aquí, ejecute <code>npm run build</code> dentro de <code>frontend/</code>.</p>"
                                 + "</body></html>");
             });

@@ -717,7 +717,7 @@ async function ejecutarBusquedaDB() {
         const cant = resultados.length;
         const textoCant = cant === 1 ? '1 resultado' : `${cant} resultados`;
         const criterioTexto = query ? ` para "${query}"` : '';
-        const indicadorFuzzy = esFuzzy ? ' ✨ (Búsqueda aproximada)' : '';
+        const indicadorFuzzy = esFuzzy ? ' (Búsqueda aproximada)' : '';
         if (resumen) {
             resumen.textContent = `${textoCant}${criterioTexto}${indicadorFuzzy} (${finTiempo} ms)`;
         }

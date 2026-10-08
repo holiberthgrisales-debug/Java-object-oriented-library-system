@@ -11,9 +11,8 @@
 5. [Especificación de la API REST (Endpoints)](#5-especificación-de-la-api-rest-endpoints)
 6. [Diseño y Módulos del Frontend (SPA)](#6-diseño-y-módulos-del-frontend-spa)
 7. [Seguridad, Hardening y Control de Vulnerabilidades (OWASP)](#7-seguridad-hardening-y-control-de-vulnerabilidades-owasp)
-8. [Pruebas Automatizadas, Resiliencia y Suite de Caos (QA / Testing)](#8-pruebas-automatizadas-resiliencia-y-suite-de-caos-qa--testing)
-9. [Scripts de Automatización y Despliegue](#9-scripts-de-automatización-y-despliegue)
-10. [Guía de Compilación, Mantenimiento y Despliegue](#10-guía-de-compilación-mantenimiento-y-despliegue)
+8. [Scripts de Automatización y Despliegue](#8-scripts-de-automatización-y-despliegue)
+9. [Guía de Compilación, Mantenimiento y Despliegue](#9-guía-de-compilación-mantenimiento-y-despliegue)
 
 ---
 
@@ -390,27 +389,11 @@ Tras la ejecución de auditorías de Penetration Testing (Pentest), el sistema i
 
 ---
 
-### 8. PRUEBAS AUTOMATIZADAS, RESILIENCIA Y SUITE DE CAOS (QA / TESTING)
-
-El proyecto incluye un entorno riguroso de pruebas unitarias, de integración, concurrencia y fuzzing ubicado en `sistema-biblioteca/java-core/src/test/`:
-
-- **`SuiteTests.java`**: Suite principal JUnit 5 que orquesta la ejecución completa de pruebas de calidad.
-- **`ChaosTestSuite.java`**: Suite de estrés y caos que evalúa:
-  1. *Módulo Usuario:* Casos límite, nulos, strings vacías, inyección SQL en `identificacion`, soporte UTF-8/emojis, IDs negativos y límites de longitud máxima (150 chars).
-  2. *Módulo Libro:* Stock negativo, años negativos, títulos/autores en blanco, robustez ante URLs maliciosas (`javascript:`) y fuzzing de filtros multicriterio.
-  3. *Módulo Préstamos:* Rechazo de stock 0, IDs inexistentes, precios negativos, fechas inconsistentes y doble devolución.
-  4. *Ataque de Concurrencia:* 20 hilos simultáneos compitiendo por la última copia de un libro para verificar que solo 1 hilo obtiene el préstamo y el stock final queda exactamente en 0.
-  5. *Fuzzing de Búsqueda:* 15 vectores de fuzzing con comodines `%`, `_`, comillas simples, caracteres de escape y consultas masivas de 200 tokens sin degradación.
-  6. *Fuzzing HTTP (Live API):* Envío de JSONs corruptos, desbordamientos numéricos en path params y validación de códigos HTTP (400, 404, 500).
-- **`DeepBreakStressTest.java`**: Auditoría profunda de casos extremos, reconciliación transaccional de stock, ráfagas de 50 peticiones HTTP simultáneas y verificación de precisión decimal.
-
----
-
-### 9. SCRIPTS DE AUTOMATIZACIÓN Y DESPLIEGUE
+### 8. SCRIPTS DE AUTOMATIZACIÓN Y DESPLIEGUE
 
 Para garantizar una experiencia en un solo clic ("cero configuración"), se incluyen scripts batch en la raíz del proyecto:
 
-#### 9.1 `INICIAR_SISTEMA.bat`
+#### 8.1 `INICIAR_SISTEMA.bat`
 1. **Limpieza de Puertos:** Verifica y libera automáticamente los puertos `3001` (Backend) y `5173` (Frontend).
 2. **Detección de Java:** Evalúa `sistema-biblioteca/runtime/bin/java.exe` o el runtime del sistema (`PATH`).
 3. **Arranque del Backend:** Inicia `sistema-biblioteca/app/biblioteca.jar` en segundo plano.
@@ -418,35 +401,35 @@ Para garantizar una experiencia en un solo clic ("cero configuración"), se incl
 5. **Sondeo Activo de Salud:** Verifica `http://localhost:5173` hasta confirmar código `200 OK`.
 6. **Lanzamiento:** Abre la aplicación en el navegador predeterminado.
 
-#### 9.2 `DETENER_SISTEMA.bat`
+#### 8.2 `DETENER_SISTEMA.bat`
 - Termina ordenadamente los procesos que escuchan en los puertos `3001` y `5173` mediante PowerShell.
 
-#### 9.3 `COMPILAR.bat`
-- Script de compilación integral que ejecuta la suite de pruebas automatizadas, compila el Fat JAR del backend mediante Maven (`mvn clean package`) actualizando `app/biblioteca.jar`, y empaqueta el frontend con Vite (`npm run build`).
+#### 8.3 `COMPILAR.bat`
+- Script de compilación integral que compila el Fat JAR del backend mediante Maven (`mvn clean package`) actualizando `app/biblioteca.jar`, y empaqueta el frontend con Vite (`npm run build`).
 
 ---
 
-### 10. GUÍA DE COMPILACIÓN, MANTENIMIENTO Y DESPLIEGUE
+### 9. GUÍA DE COMPILACIÓN, MANTENIMIENTO Y DESPLIEGUE
 
 #### Requisitos Previos
 - **Java Development Kit (JDK):** Versión 17 o superior.
 - **Node.js:** Versión 18 o superior con `npm`.
 - **Apache Maven:** Versión 3.8 o superior.
 
-#### 10.1 Compilación Completa (1 Clic)
+#### 9.1 Compilación Completa (1 Clic)
 Ejecute en la raíz del proyecto:
 ```bat
 COMPILAR.bat
 ```
 
-#### 10.2 Compilación Manual del Backend
+#### 9.2 Compilación Manual del Backend
 Desde `sistema-biblioteca/java-core/`:
 ```bash
 mvn clean package
 ```
 *Nota:* El plugin `maven-shade-plugin` en `pom.xml` está configurado para escribir el JAR directamente en `../app/biblioteca.jar`, asegurando que los scripts de arranque ejecuten inmediatamente la última versión compilada.
 
-#### 10.3 Compilación y Pruebas del Frontend
+#### 9.3 Compilación del Frontend
 Desde `sistema-biblioteca/frontend/`:
 ```bash
 # Instalación de dependencias
@@ -459,7 +442,7 @@ npm run dev
 npm run build
 ```
 
-#### 10.4 Mantenimiento y Respaldo de la Base de Datos
+#### 9.4 Mantenimiento y Respaldo de la Base de Datos
 - La base de datos reside en el archivo SQLite único `sistema-biblioteca/database/biblioteca.db`.
 - Para realizar copias de seguridad (backups), copie dicho archivo con el sistema detenido.
 - Para reiniciar la base de datos a un estado de fábrica, elimine el archivo `biblioteca.db`; el backend generará automáticamente las tablas e índices limpios en el próximo arranque.

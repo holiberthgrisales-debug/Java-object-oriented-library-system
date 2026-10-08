@@ -343,7 +343,7 @@ public class OpenApiDocGenerator {
 <body>
   <div class="top-header-banner">
     <div class="brand-title">
-      📚 Sistema de Biblioteca - Swagger UI (OpenAPI 3.0)
+      Sistema de Biblioteca - Swagger UI (OpenAPI 3.0)
     </div>
     <div class="brand-links">
       <a href="/openapi.json" target="_blank">Ver JSON OpenAPI</a>

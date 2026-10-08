@@ -589,7 +589,7 @@ async function ejecutarAutocompletado({ param, valor, indicadorId, errorMsg, noE
         const metadatos = await consultarMetadatosApi({ [param]: valor });
         if (metadatos) {
             const t = await aplicarDatosLibroAFormulario(metadatos);
-            toastNotificacion(`✨ encontrado: "${t || metadatos.titulo}"`, 'success');
+            toastNotificacion(`encontrado:"${t || metadatos.titulo}"`, 'success');
         } else if (!silencioso) {
             toastNotificacion(noEncontradoMsg, 'info');
         }

@@ -31,9 +31,9 @@ if "%MVN_EXE%"=="" (
 
 echo [OK] Maven detectado: %MVN_EXE%
 
-REM 2. Compilacion Backend Java y ejecucion de pruebas
+REM 2. Compilacion Backend Java
 echo.
-echo [1/2] Compilando Backend Java y ejecutando tests...
+echo [1/2] Compilando Backend Java...
 if not exist "%APP_DIR%" mkdir "%APP_DIR%"
 
 call "!MVN_EXE!" -f "%JAVA_DIR%\pom.xml" clean package

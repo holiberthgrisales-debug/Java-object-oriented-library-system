@@ -2,21 +2,35 @@
 # Archivos y carpetas ignorados por Git
 # ==============================================================================
 
+# Entornos y binarios pesados
+runtime/
+app/
+maven/
+*.jar
+*.exe
+
 # Compilacion Java & Maven
+java-core/target/
 target/
 *.class
 dependency-reduced-pom.xml
-
-# Base de datos SQLite temporales
-*.db-journal
-*.db-wal
-*.db-shm
+.m2/
 
 # Node.js & Dependencias Frontend
+frontend/node_modules/
 node_modules/
+frontend/dist/
+dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Bases de datos SQLite
+database/*.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 
 # Archivos temporales y de registro
 *.log

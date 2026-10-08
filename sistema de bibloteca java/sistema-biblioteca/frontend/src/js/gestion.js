@@ -127,9 +127,13 @@ function editarLibro(id) {
         'l-edit-id': l.id, 'l-titulo': l.titulo || '', 'l-autor': l.autor || '',
         'l-isbn': l.isbn || '', 'l-anio': l.anioPublicacion || '', 'l-edicion': l.edicion || '',
         'l-anio-edicion': l.anioEdicion || '', 'l-estado': l.estado || 'disponible',
-        'l-cantidad': l.cantidadDisponible || 1, 'l-ubicacion': l.ubicacion || '', 'l-url': l.urlDescarga || ''
+        'l-cantidad': l.cantidadDisponible ?? 1, 'l-ubicacion': l.ubicacion || '', 'l-url': l.urlDescarga || ''
     });
-    if (window.tomSelectGenero) window.tomSelectGenero.setValue(l.genero || '');
+    if (window.tomSelectGenero) {
+        const g = l.genero || '';
+        if (g && !window.tomSelectGenero.options[g]) window.tomSelectGenero.addOption({ value: g, text: g });
+        window.tomSelectGenero.setValue(g);
+    }
     else setVal('l-genero', l.genero || '');
 
     setText('form-libro-titulo', `editando libro #${l.id}`);
@@ -414,7 +418,7 @@ async function renderDropdownUsuarios(query = '') {
     const dd = $('p-usuario-dropdown');
     if (!dd) return;
     try {
-        const list = query.trim() ? await api(`/usuarios?q=${encodeURIComponent(query)}`) : (window.listaUsuariosGlobal || []);
+        const list = query.trim() ? await api(`/usuarios?busqueda=${encodeURIComponent(query)}`) : (window.listaUsuariosGlobal || []);
         dd.style.display = 'block';
         if (!list?.length) { dd.innerHTML = '<div class="searchable-empty">no se encontraron usuarios</div>'; return; }
         dd.innerHTML = list.map(u => `<div class="searchable-item" onclick="seleccionarUsuarioPrestamo(${u.id})">

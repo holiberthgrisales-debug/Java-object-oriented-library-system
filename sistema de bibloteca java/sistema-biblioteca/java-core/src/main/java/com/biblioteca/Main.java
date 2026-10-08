@@ -110,7 +110,7 @@ public class Main {
                         && authHeader.equalsIgnoreCase("Bearer " + apiKeyConfig.trim());
                 boolean validCustom = customKeyHeader != null && customKeyHeader.equals(apiKeyConfig.trim());
                 if (!validBearer && !validCustom) {
-                    ctx.status(401).result("No autorizado: API Key inválida o no provista");
+                    throw new io.javalin.http.UnauthorizedResponse("No autorizado: API Key inválida o no provista");
                 }
             });
         }

@@ -39,7 +39,7 @@ public class LibroService implements Obligaciones<Libro> {
         Integer anioEdicion = rs.getObject("anio_edicion") != null ? rs.getInt("anio_edicion") : null;
         String urlDescarga = rs.getString("url_descarga");
         if (urlDescarga != null && !urlDescarga.trim().isEmpty()) {
-            return new LibroDigital(
+            LibroDigital digital = new LibroDigital(
                     rs.getInt("id"),
                     rs.getString("titulo"),
                     rs.getString("autor"),
@@ -53,6 +53,8 @@ public class LibroService implements Obligaciones<Libro> {
                     anioEdicion,
                     rs.getString("edicion")
             );
+            digital.setUbicacion(rs.getString("ubicacion"));
+            return digital;
         } else {
             return new LibroFisico(
                     rs.getInt("id"),

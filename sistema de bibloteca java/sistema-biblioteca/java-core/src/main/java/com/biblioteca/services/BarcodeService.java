@@ -209,7 +209,7 @@ public class BarcodeService {
     // consulta un usuario por su numero de documento o identificacion
     public Map<String, Object> buscarUsuarioPorIdentificacion(String identificacion) {
         String clean = identificacion.trim();
-        String sql = "SELECT id, identificacion, nombre, email, telefono FROM usuarios WHERE identificacion = ? LIMIT 1";
+        String sql = "SELECT id, identificacion, nombre, email, telefono FROM usuarios WHERE UPPER(replace(replace(identificacion, '-', ''), ' ', '')) = UPPER(?) LIMIT 1";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clean);

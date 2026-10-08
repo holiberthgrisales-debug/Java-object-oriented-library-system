@@ -12,7 +12,7 @@ public class OpenApiDocGenerator {
     "version": "1.1.0",
     "contact": {
       "name": "Equipo Biblioteca Core",
-      "url": "http://localhost:5173"
+      "url": "http://localhost:3001"
     }
   },
   "servers": [
@@ -347,7 +347,7 @@ public class OpenApiDocGenerator {
     </div>
     <div class="brand-links">
       <a href="/openapi.json" target="_blank">Ver JSON OpenAPI</a>
-      <a href="http://localhost:5173" target="_blank">Ir a la Aplicación Web</a>
+      <a href="http://localhost:3001" target="_blank">Ir a la Aplicación Web</a>
     </div>
   </div>
   <div id="swagger-ui"></div>

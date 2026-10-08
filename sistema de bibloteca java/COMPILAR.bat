@@ -55,6 +55,15 @@ echo.
 echo [2/2] Compilando Frontend con Vite...
 if exist "%FRONTEND_DIR%\package.json" (
     cd /d "%FRONTEND_DIR%"
+    if not exist "node_modules" (
+        call npm.cmd install
+        if !errorlevel! neq 0 (
+            echo [ERROR] Fallo la instalacion de dependencias del frontend.
+            cd /d "%BASE_DIR%"
+            pause
+            exit /b 1
+        )
+    )
     call npm.cmd run build
     if !errorlevel! neq 0 (
         echo [ERROR] Fallo la construccion del frontend con Vite.

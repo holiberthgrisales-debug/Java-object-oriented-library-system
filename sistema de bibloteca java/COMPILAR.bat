@@ -18,10 +18,6 @@ set "MVN_EXE="
 where mvn >nul 2>nul
 if !errorlevel! equ 0 (
     set "MVN_EXE=mvn"
-) else if exist "C:\Users\G\Downloads\apache-maven-3.9.16\bin\mvn.cmd" (
-    set "MVN_EXE=C:\Users\G\Downloads\apache-maven-3.9.16\bin\mvn.cmd"
-) else if exist "%USERPROFILE%\Downloads\apache-maven-3.9.16\bin\mvn.cmd" (
-    set "MVN_EXE=%USERPROFILE%\Downloads\apache-maven-3.9.16\bin\mvn.cmd"
 ) else if exist "%BASE_DIR%maven\bin\mvn.cmd" (
     set "MVN_EXE=%BASE_DIR%maven\bin\mvn.cmd"
 )

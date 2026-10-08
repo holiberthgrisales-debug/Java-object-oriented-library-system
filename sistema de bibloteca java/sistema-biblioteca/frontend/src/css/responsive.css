@@ -1,0 +1,409 @@
+/*
+   sistema de gestion bibliotecaria - hoja de estilos responsive
+   adaptacion completa para dueno y administrador en cualquier dispositivo.
+   puntos de quiebre: 1400px, 1200px, 1024px, 768px, 480px, 360px y print.
+   garantiza usabilidad tactil, legibilidad de kpis y tablas en moviles.
+   */
+
+/*
+   1. pantallas grandes y monitores hd (max-width: 1400px)
+   */
+@media (max-width: 1400px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.95rem;
+  }
+
+  .content {
+    padding: 1.5rem 1.85rem;
+  }
+}
+
+/*
+   2. laptops y pantallas estandar (max-width: 1200px)
+   */
+@media (max-width: 1200px) {
+  .kpi-grid-8 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .dashboard-charts-grid,
+  .dashboard-charts-2x2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .chart-container-rel {
+    min-height: 260px;
+  }
+
+  .dashboard-operational-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/*
+   3. tablets en modo horizontal y pantallas medianas (max-width: 1024px)
+   */
+@media (max-width: 1024px) {
+  .cyber-top-header {
+    padding: 0 1.25rem;
+  }
+
+  .cyber-top-center {
+    max-width: 320px;
+    margin: 0 1rem;
+  }
+
+  .sidebar {
+    width: 210px;
+    min-width: 210px;
+    padding: 1rem 0.6rem;
+  }
+
+  .content {
+    padding: 1.35rem 1.25rem;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .form-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*
+   4. tablets y celulares en modo retrato (max-width: 768px)
+   */
+@media (max-width: 768px) {
+  /* barra superior compacta */
+  .cyber-top-header {
+    height: 54px;
+    padding: 0 0.95rem;
+  }
+
+  .cyber-top-center {
+    display: none;
+  }
+
+  .cyber-brand-badge span {
+    font-size: 0.98rem;
+  }
+
+  .app-container {
+    flex-direction: column;
+    margin-top: 54px;
+    min-height: calc(100vh - 54px);
+  }
+
+  /* navegacion lateral convertida en barra horizontal tactil con scroll */
+  .sidebar {
+    position: sticky;
+    top: 54px;
+    z-index: 40;
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    flex-direction: row;
+    padding: 0.4rem 0.75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--sidebar-bg);
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 0.4rem;
+    width: max-content;
+    flex: none;
+  }
+
+  .nav-btn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.84rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: auto;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav-btn svg,
+  .nav-btn i {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* area de contenido principal */
+  .content {
+    padding: 1rem 0.95rem 2.25rem 0.95rem;
+    overflow-x: hidden;
+  }
+
+  /* encabezados de seccion y barras de acciones */
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .section-title-wrap h2 {
+    font-size: 1.3rem;
+  }
+
+  .section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .section-actions button,
+  .section-actions a {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+  }
+
+  /* grillas ejecutivas y tarjetas kpi */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .kpi-grid-8 {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .dashboard-charts-2x2,
+  .dashboard-operational-grid {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+  }
+
+  .kpi-card {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .kpi-value {
+    font-size: 1.3rem;
+  }
+
+  .alert-widget-grid,
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+  }
+
+  /* formularios adaptables a una sola columna */
+  .form-grid-3,
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .form-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .form-actions-row button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+  }
+
+  .date-group-row {
+    flex-wrap: wrap;
+  }
+
+  /* paneles y tablas de datos estilo excel con scroll tactil */
+  .table-panel {
+    padding: 0.6rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .excel-table {
+    min-width: 690px;
+    font-size: 0.8rem;
+  }
+
+  .excel-table thead th,
+  .excel-table tbody td {
+    padding: 0.65rem 0.75rem;
+  }
+
+  /* controles de busqueda y filtros */
+  .search-controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .search-category-select {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .audit-filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .audit-filters-row select,
+  .audit-filters-row input {
+    width: 100%;
+  }
+
+  /* modales emergentes adaptados para pantalla tactil */
+  .modal-overlay {
+    padding: 0.85rem;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 1.25rem 1rem;
+    overflow-y: auto;
+  }
+
+  .modal-footer-cyber {
+    flex-direction: column-reverse;
+    gap: 0.65rem;
+  }
+
+  .modal-footer-cyber button {
+    width: 100%;
+  }
+
+  /* carnet de socio y escaner */
+  .carnet-socio-card {
+    max-width: 100%;
+  }
+
+  .carnet-body-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #reader-camara-box {
+    max-width: 100%;
+    min-height: 220px;
+  }
+}
+
+/*
+   5. telefonos moviles compactos (max-width: 480px)
+   */
+@media (max-width: 480px) {
+  .cyber-top-header {
+    padding: 0 0.75rem;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .kpi-card {
+    padding: 0.85rem 1rem;
+  }
+
+  .kpi-value {
+    font-size: 1.35rem;
+  }
+
+  .content {
+    padding: 0.85rem 0.65rem 1.85rem 0.65rem;
+  }
+
+  .cyber-brand-badge span:last-child {
+    font-size: 1rem;
+  }
+
+  .theme-toggle-btn span,
+  .cyber-status-chip span {
+    display: none;
+  }
+
+  .btn-chip {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.72rem;
+  }
+
+  .ranking-item {
+    padding: 0.5rem 0.65rem;
+  }
+}
+
+/*
+   6. pantallas ultra compactas (max-width: 360px)
+   */
+@media (max-width: 360px) {
+  .nav-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .modal-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .kpi-title {
+    font-size: 0.72rem;
+  }
+}
+
+/*
+   7. modo impresion (carnets, tickets y reportes)
+   */
+@media print {
+  .cyber-top-header,
+  .sidebar,
+  .btn-action,
+  .form-actions-row,
+  .search-controls-bar,
+  .dashboard-action-toolbar,
+  #reader-camara-box,
+  .scanner-controls-row {
+    display: none !important;
+  }
+
+  body,
+  .app-container,
+  .content {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .carnet-socio-card {
+    box-shadow: none !important;
+    border: 2px solid #000000 !important;
+    page-break-inside: avoid;
+    margin: 2rem auto !important;
+  }
+
+  .excel-table {
+    min-width: 100% !important;
+    color: #000000 !important;
+    border-collapse: collapse !important;
+  }
+
+  .excel-table th,
+  .excel-table td {
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+  }
+}
